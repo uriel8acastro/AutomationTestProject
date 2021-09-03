@@ -1,5 +1,7 @@
 package com.qacompany.automationproject;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,5 +45,32 @@ public class UserStory1Test extends JUnitTestBase {
 		homepage.searchCruises.click();
 		Thread.sleep(5000);		
 		Assert.assertEquals("NASSAU",itenerary.firtsOption.getText());
+	}
+	
+	@Test
+	public void testHomePageUserStory2() throws InterruptedException {
+		driver.get(baseUrl);
+		//Select Destination
+		Thread.sleep(3000);
+		homepage.sailToButton.click();    
+		homepage.bahamasOption.click();
+		Thread.sleep(5000);
+		homepage.sailToButton.click();
+		Assert.assertTrue("THE BAHAMAS".equals(homepage.bahamasButtonLabel.getText()));
+		//Select days		 
+		homepage.durationButton.click();
+		Thread.sleep(2000);
+		homepage.daysOption6to9.click();	    
+		Thread.sleep(2000);
+		homepage.durationButton.click();
+		Assert.assertTrue("6 - 9 DAYS".equals(homepage.daysOption6To9Label.getText()));
+		homepage.searchCruises.click();
+		Thread.sleep(5000);		
+		Assert.assertEquals("NASSAU",itenerary.firtsOption.getText());
+		itenerary.firtsOption.click();
+		Thread.sleep(3000);
+		itenerary.firtsLearnMoreButton.click();
+		Thread.sleep(3000);
+		assertTrue(itenerary.firtsIteneraryDayImage.isDisplayed());
 	}
 }
